@@ -1,11 +1,11 @@
-# CPP-MAIN
+# C-MAIN
 
 ## About
-A code generation tool used to initialize a new C++ project
+A code generation tool used to initialize a new C project
 
 ## Usage
 ```cmd
-cpp-main <PROJECT NAME>
+c-main <PROJECT NAME>
 ```
 
 Running the previous command generates the following files:
