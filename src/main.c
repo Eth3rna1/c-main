@@ -22,16 +22,8 @@ int main(int argc, char *argv[]) {
     char* PROJECT_NAME = argv[1];
     printf("%s\n", PROJECT_NAME);
     int _ = createDirectories(PROJECT_NAME);
-    _ = createFiles(PROJECT_NAME);
+    createFiles(PROJECT_NAME);
+
+    createLocalRepo(PROJECT_NAME);
     return 0;
 }
-
-/*int main() {*/
-/*    char path[256];*/
-/*    char* base = ".";*/
-/*    char* leaf = "direc";*/
-/*    concatPath(path, base, leaf);*/
-/*    concatPath(path, path, "text.h");*/
-/*    printf("Result: %s\n", path);*/
-/*    return 0;*/
-/*}*/

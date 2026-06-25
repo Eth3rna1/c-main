@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 #include "../include/os.h"
 #include "../include/constants.h"
 
@@ -22,7 +23,7 @@ int createDirectories(const char* base) {
         return res_a == res_b && res_b == 1;
     } else {
         // creates the folder in which the project will live in
-        int _ = createDirectory(base);
+        createDirectory(base);
     }
 
     char srcDirBuf[MAX_PATH_LEN];
@@ -66,4 +67,34 @@ int createFiles(const char* base) {
     int b = res_b == res_c && res_b == 0;
 
     return a == b && b == 1;
+}
+
+
+// Given a working directory (wd), changes
+// directory into it and initializes a git
+// repository
+int createLocalRepo(const char* wd) {
+    if (system(NULL) == 0) {
+        // means that there is no
+        // command processor
+        return 0;
+    }
+
+    if (chdir(wd) != 0) {
+        // not a successful change of
+        // working directories
+        return 0;
+    }
+
+    int status_code = system("git init -q");
+
+    if (status_code != 0) {
+        printf("Could not initialize git repo. Please make sure you got git installed");
+    } else {
+        char gitLocBuf[MAX_PATH_LEN];
+        concatPath(gitLocBuf, wd, ".git");
+        printf("%s\n", gitLocBuf);
+    }
+
+    return status_code == 0;
 }
